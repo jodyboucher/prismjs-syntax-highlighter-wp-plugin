@@ -7,7 +7,7 @@
  *
  * @package     JodyBoucher\Wordpress\PrismjsSyntaxHighlighter
  * @author      Jody Boucher <jody@jodyboucher.com>
- * @version     1.0.0
+ * @version     1.0.1
  * @license     GPL2
  * @copyright   2016 Jody Boucher
  *
@@ -15,7 +15,7 @@
  * Plugin Name: Prism.js Syntax Highlighter
  * Plugin URI:  https://github.com/jodyboucher/prismjs-syntax-highlighter-wp-plugin
  * Description: Lightweight plugin that integrates the Prism.js syntax highlighter into WordPress
- * Version:     1.0.0
+ * Version:     1.0.1
  * Author:      Jody Boucher
  * Author URI:  https://jodyboucher.com
  * License:     GPLv2
