@@ -1,4 +1,4 @@
-/* http://prismjs.com/download.html?themes=prism&languages=markup+css+clike+javascript+aspnet+bash+csharp+http+json+markdown+php+php-extras+python+scss+sql+typescript&plugins=line-highlight+line-numbers+autolinker+file-highlight+show-language+command-line */
+/* http://prismjs.com/download.html?themes=prism&languages=markup+css+clike+javascript+aspnet+bash+csharp+http+json+markdown+php+php-extras+python+scss+sql+typescript+yaml&plugins=line-highlight+line-numbers+autolinker+file-highlight+show-language+command-line */
 /**
  * prism.js default theme for JavaScript, CSS and HTML
  * Based on dabblet (http://dabblet.com)
@@ -11,8 +11,7 @@ pre[class*="language-"] {
     background: none;
     text-shadow: 0 1px white;
     font-family: Consolas, Monaco, 'Andale Mono', 'Ubuntu Mono', monospace;
-    font-size: 14px;
-    direction: ltr;
+    font-size: 14px; /* JB: modified from default theme */
     text-align: left;
     white-space: pre;
     word-spacing: normal;
@@ -33,13 +32,13 @@ pre[class*="language-"] {
 pre[class*="language-"]::-moz-selection, pre[class*="language-"] ::-moz-selection,
 code[class*="language-"]::-moz-selection, code[class*="language-"] ::-moz-selection {
     text-shadow: none;
-    background: #8da7c6;
+    background: #b3d4fc;
 }
 
 pre[class*="language-"]::selection, pre[class*="language-"] ::selection,
 code[class*="language-"]::selection, code[class*="language-"] ::selection {
     text-shadow: none;
-    background: #8da7c6;
+    background: #b3d4fc;
 }
 
 @media print {
@@ -51,14 +50,14 @@ code[class*="language-"]::selection, code[class*="language-"] ::selection {
 
 /* Code blocks */
 pre[class*="language-"] {
-    padding: 2em 1em 1em 1em;
-    margin: 0 0 2em;
+    padding: 2em 1em 1em 1em; /* JB: modified from default theme */
+    margin: 0 0 2em; /* JB: modified from default theme */
     overflow: auto;
 }
 
 :not(pre) > code[class*="language-"],
 pre[class*="language-"] {
-    background: rgba(30, 30, 0, 0.05);
+    background: rgba(30, 30, 0, 0.05); /* JB: modified from default theme */
 }
 
 /* Inline code */
@@ -152,10 +151,10 @@ pre[data-line] {
     margin-top: 1em; /* Same as .prism’s padding-top */
 
     background: hsla(24, 20%, 50%,.08);
-    background: -moz-linear-gradient(left, hsla(24, 20%, 50%,.1) 70%, hsla(24, 20%, 50%,0));
-    background: -webkit-linear-gradient(left, hsla(24, 20%, 50%,.1) 70%, hsla(24, 20%, 50%,0));
-    background: -o-linear-gradient(left, hsla(24, 20%, 50%,.1) 70%, hsla(24, 20%, 50%,0));
-    background: linear-gradient(left, hsla(24, 20%, 50%,.1) 70%, hsla(24, 20%, 50%,0));
+    background: -moz-linear-gradient(to right, hsla(24, 20%, 50%,.1) 70%, hsla(24, 20%, 50%,0));
+    background: -webkit-linear-gradient(to right, hsla(24, 20%, 50%,.1) 70%, hsla(24, 20%, 50%,0));
+    background: -o-linear-gradient(to right, hsla(24, 20%, 50%,.1) 70%, hsla(24, 20%, 50%,0));
+    background: linear-gradient(to right, hsla(24, 20%, 50%,.1) 70%, hsla(24, 20%, 50%,0));
 
     pointer-events: none;
 
@@ -186,6 +185,7 @@ pre[data-line] {
     top: auto;
     bottom: .4em;
 }
+
 pre.line-numbers {
     position: relative;
     padding-left: 3.8em;
@@ -235,7 +235,7 @@ div.prism-show-language {
 
 div.prism-show-language > div.prism-show-language-label {
     color: black;
-    background-color: #d0d0d9;
+    background-color: #CFCFCF;
     display: inline-block;
     position: absolute;
     bottom: auto;
@@ -260,11 +260,12 @@ div.prism-show-language > div.prism-show-language-label {
 }
 
 .command-line-prompt {
+    /* border-right: 1px solid #999; JB: modified from default theme */
     display: block;
     float: left;
     font-size: 100%;
     letter-spacing: -1px;
-    margin-right: 0.5em;
+    margin-right: .5em; /* JB: modified from default theme */
     pointer-events: none;
 
     -webkit-user-select: none;
@@ -274,10 +275,10 @@ div.prism-show-language > div.prism-show-language-label {
 }
 
 .command-line-prompt > span:before {
-    color: #aab;
+    color: #aab; /* JB: modified from default theme */
     content: ' ';
     display: block;
-    padding-right: 0.5em;
+    padding-right: 0.5em; /* JB: modified from default theme */
 }
 
 .command-line-prompt > span[data-user]:before {
@@ -291,4 +292,3 @@ div.prism-show-language > div.prism-show-language-label {
 .command-line-prompt > span[data-prompt]:before {
     content: attr(data-prompt);
 }
-
