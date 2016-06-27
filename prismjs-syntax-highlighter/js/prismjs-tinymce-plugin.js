@@ -174,7 +174,7 @@
                             label: 'Code:',
                             multiline: true,
                             minWidth: 500,
-                            minHeight: 500,
+                            minHeight: 300,
                             value: currentCode
                         },
                         {
@@ -190,7 +190,7 @@
                         var codeTag = '<code';
 
                         // build the <code> tag
-                        if (event.data.codeInline) {
+                        if (event.data.inline) {
                             codeTag += '>';
                         } else {
                             codeTag += ' class="language-' + event.data.language + '">';
@@ -199,14 +199,14 @@
                         codeTag += sanitizeHtml(event.data.code) + '</code>';
 
                         // build out the remaining html (for code blocks)
-                        if (event.data.codeInline) {
+                        if (event.data.inline) {
                             html = codeTag;
                         } else {
                             html = '<pre';
                             preClass = [];
 
                             // check for class selectors
-                            if (event.data.codeCommandLine) {
+                            if (event.data.commandLine) {
                                 preClass.push('command-line');
                             }
 

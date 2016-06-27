@@ -142,7 +142,7 @@ class Prismjs_Syntax_Highlighter {
 		// Set default options values.
 		$options = get_option( self::SETTINGS_GROUP );
 		if ( ! $options ) {
-			$options = [ ];
+			$options = [];
 		}
 
 		if ( ! isset( $options[ self::OPTION_DEFAULT_LANGUAGE ] ) ) {
