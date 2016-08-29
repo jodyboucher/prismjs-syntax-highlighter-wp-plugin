@@ -1,7 +1,7 @@
 {
   "name": "jodyboucher/prismjs-syntax-highlighter",
   "description": "Simple, lightweight plugin that integrates the Prism.js syntax highlighter into WordPress",
-  "type": "library",
+  "type": "wordpress-plugin",
   "license": "GPL-2.0",
   "homepage": "https://github.com/jodyboucher/prismjs-syntax-highlighter-wp-plugin",
   "authors": [
