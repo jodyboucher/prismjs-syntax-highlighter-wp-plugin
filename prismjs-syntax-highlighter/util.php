@@ -1,14 +1,9 @@
 <?php
 /**
  * Prism.js Syntax Highlighter WordPress plugin: utility routines
- *
- * @package   JodyBoucher\Wordpress\PrismjsSyntaxHighlighter
- * @author    Jody Boucher <jody@jodyboucher.com>
- * @license   GPL2
- * @copyright 2016 Jody Boucher
  */
 
-namespace JodyBoucher\Wordpress\PrismjsSyntaxHighlighter;
+namespace JodyBoucher\WordPress\Plugins\PrismJsSyntaxHighlighter;
 
 if ( ! function_exists( 'debug_log' ) ) {
 	/**
