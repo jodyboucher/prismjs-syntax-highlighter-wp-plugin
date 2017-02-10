@@ -5,11 +5,10 @@
  * The Prism.js Syntax Highlighter WordPress plugin is a lightweight
  * plugin that integrates the Prism.js syntax highlighter into WordPress.
  *
- * @package     JodyBoucher\Wordpress\PrismjsSyntaxHighlighter
  * @author      Jody Boucher <jody@jodyboucher.com>
  * @version     1.0.1
  * @license     GPL2
- * @copyright   2016 Jody Boucher
+ * @copyright   2016-2017 Jody Boucher
  *
  *
  * Plugin Name: Prism.js Syntax Highlighter
@@ -23,7 +22,7 @@
  *
  * --------------------------------------------------------------------------------
  * Prism.js Syntax Highlighter WordPress plugin
- * Copyright (C) 2016  Jody Boucher
+ * Copyright (C) 2016-2017  Jody Boucher
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -145,7 +144,7 @@ class Prismjs_Syntax_Highlighter {
 		// Set default options values.
 		$options = get_option( self::SETTINGS_GROUP );
 		if ( ! $options ) {
-			$options = [];
+			$options = array();
 		}
 
 		if ( ! isset( $options[ self::OPTION_DEFAULT_LANGUAGE ] ) ) {
@@ -307,28 +306,25 @@ class Prismjs_Syntax_Highlighter {
 		$setting_name = self::SETTINGS_GROUP . '[' . self::OPTION_SHOW_CSS_WARNING_NOTICE . ']';
 		if ( isset( $options[ self::OPTION_SHOW_CSS_WARNING_NOTICE ] ) && '1' === $options[ self::OPTION_SHOW_CSS_WARNING_NOTICE ] ) {
 			?>
-            <div class="updated">
-                <h3>Prism.js Syntax Highlighter</h3>
-
-                <p>
-                    The current theme modifies &lt;pre&gt; and/or &lt;code&gt; styles. These modifications could
-                    interfere with the display and appearance of Prism.js styled content.
-                </p>
-
-                <p>
-                    <strong>Please <a href="<?php echo esc_url( admin_url() . 'theme-editor.php' ); ?>">edit the
-                            theme</a> and comment out or remove the relevant lines.</strong>
-                </p>
-
-                <form method="post" action="options.php">
+			<div class="updated">
+				<h3>Prism.js Syntax Highlighter</h3>
+				<p>
+					The current theme modifies &lt;pre&gt; and/or &lt;code&gt; styles. These modifications could
+					interfere with the display and appearance of Prism.js styled content.
+				</p>
+				<p>
+					<strong>Please <a href="<?php echo esc_url( admin_url() . 'theme-editor.php' ); ?>">edit the
+							theme</a> and comment out or remove the relevant lines.</strong>
+				</p>
+				<form method="post" action="options.php">
 					<?php settings_fields( 'prismjs-settings-group' ); ?>
 
-                    <input type="hidden" id="<?php echo esc_attr( self::OPTION_SHOW_CSS_WARNING_NOTICE ); ?>"
-                           name="<?php echo esc_attr( $setting_name ); ?>" value="0"/>
+					<input type="hidden" id="<?php echo esc_attr( self::OPTION_SHOW_CSS_WARNING_NOTICE ); ?>"
+					       name="<?php echo esc_attr( $setting_name ); ?>" value="0"/>
 
 					<?php submit_button( 'Hide this warning' ); ?>
-                </form>
-            </div>
+				</form>
+			</div>
 			<?php
 		}
 
@@ -344,7 +340,7 @@ class Prismjs_Syntax_Highlighter {
 
 		$options = get_option( self::SETTINGS_GROUP );
 		if ( ! $options ) {
-			$options = [ ];
+			$options = array();
 		}
 
 		$language     = ArrayHelper::get_value_or_default( self::OPTION_DEFAULT_LANGUAGE, $options, '' );
@@ -363,11 +359,13 @@ class Prismjs_Syntax_Highlighter {
 			$js_file = esc_attr( $options[ self::OPTION_CUSTOM_JS ] );
 		}
 
-		wp_register_script( 'PrismJsSyntaxHighlighter',
-		                    plugins_url( 'js/' . $js_file, __FILE__ ),
-		                    null,
-		                    self::VERSION,
-		                    true );
+		wp_register_script(
+			'PrismJsSyntaxHighlighter',
+			plugins_url( 'js/' . $js_file, __FILE__ ),
+			null,
+			self::VERSION,
+			true
+		);
 		wp_enqueue_script( 'PrismJsSyntaxHighlighter' );
 
 		debug_log( 'function end' );
@@ -444,11 +442,13 @@ class Prismjs_Syntax_Highlighter {
 				$js_file = esc_attr( $options[ self::OPTION_CUSTOM_JS ] );
 			}
 
-			wp_register_script( 'prismjs-syntax-highlighter-js',
-			                    plugins_url( 'js/' . $js_file, __FILE__ ),
-			                    null,
-			                    self::VERSION,
-			                    true );
+			wp_register_script(
+				'prismjs-syntax-highlighter-js',
+				plugins_url( 'js/' . $js_file, __FILE__ ),
+				null,
+				self::VERSION,
+				true
+			);
 			wp_enqueue_script( 'prismjs-syntax-highlighter-js' );
 		}
 
@@ -495,10 +495,12 @@ class Prismjs_Syntax_Highlighter {
 				$css_file = esc_attr( $options[ self::OPTION_CUSTOM_CSS ] );
 			}
 
-			wp_register_style( 'prismjs-syntax-highlighter-css',
-			                   plugins_url( 'css/' . $css_file, __FILE__ ),
-			                   null,
-			                   self::VERSION );
+			wp_register_style(
+				'prismjs-syntax-highlighter-css',
+				plugins_url( 'css/' . $css_file, __FILE__ ),
+				null,
+				self::VERSION
+			);
 			wp_enqueue_style( 'prismjs-syntax-highlighter-css' );
 		}
 
@@ -525,13 +527,13 @@ class Prismjs_Syntax_Highlighter {
 		$setting_name = self::SETTINGS_GROUP . '[' . self::OPTION_CUSTOM_CSS . ']';
 
 		?>
-        <input type="text"
-               id="<?php echo esc_attr( self::OPTION_CUSTOM_CSS ) ?>"
-               name="<?php echo esc_attr( $setting_name ); ?>"
-               value="<?php echo esc_attr( '' !== $option_value ? esc_attr( $option_value ) : '' ); ?>"
-               title="Custom Prism CSS filename"
-        />
-        <p class="description">File must be in <?php echo esc_html( plugin_dir_path( __FILE__ ) . 'css/' ); ?></p>
+		<input type="text"
+		       id="<?php echo esc_attr( self::OPTION_CUSTOM_CSS ) ?>"
+		       name="<?php echo esc_attr( $setting_name ); ?>"
+		       value="<?php echo esc_attr( '' !== $option_value ? esc_attr( $option_value ) : '' ); ?>"
+		       title="Custom Prism CSS filename"
+		/>
+		<p class="description">File must be in <?php echo esc_html( plugin_dir_path( __FILE__ ) . 'css/' ); ?></p>
 		<?php
 
 		debug_log( 'function end' );
@@ -551,13 +553,13 @@ class Prismjs_Syntax_Highlighter {
 		$setting_name = self::SETTINGS_GROUP . '[' . self::OPTION_CUSTOM_JS . ']';
 
 		?>
-        <input type="text"
-               id="<?php echo esc_attr( self::OPTION_CUSTOM_JS ) ?>"
-               name="<?php echo esc_attr( $setting_name ); ?>"
-               value="<?php echo esc_attr( '' !== $option_value ? esc_attr( $option_value ) : '' ); ?>"
-               title="Custom Prism JS filename"
-        />
-        <p class="description">File must be in <?php echo esc_html( plugin_dir_path( __FILE__ ) . 'js/' ); ?></p>
+		<input type="text"
+		       id="<?php echo esc_attr( self::OPTION_CUSTOM_JS ) ?>"
+		       name="<?php echo esc_attr( $setting_name ); ?>"
+		       value="<?php echo esc_attr( '' !== $option_value ? esc_attr( $option_value ) : '' ); ?>"
+		       title="Custom Prism JS filename"
+		/>
+		<p class="description">File must be in <?php echo esc_html( plugin_dir_path( __FILE__ ) . 'js/' ); ?></p>
 		<?php
 		debug_log( 'function end' );
 	}
@@ -576,12 +578,12 @@ class Prismjs_Syntax_Highlighter {
 		$setting_name = self::SETTINGS_GROUP . '[' . self::OPTION_DEFAULT_INLINE . ']';
 
 		?>
-        <input type="checkbox"
-               id="<?php echo esc_attr( self::OPTION_DEFAULT_INLINE ) ?>"
-               name="<?php echo esc_attr( $setting_name ); ?>"
-               value="1" <?php checked( 1, $option_value, true ); ?>
-               title="Default highlighting to inline"
-        />
+		<input type="checkbox"
+		       id="<?php echo esc_attr( self::OPTION_DEFAULT_INLINE ) ?>"
+		       name="<?php echo esc_attr( $setting_name ); ?>"
+		       value="1" <?php checked( 1, $option_value, true ); ?>
+		       title="Default highlighting to inline"
+		/>
 		<?php
 
 		debug_log( 'function end' );
@@ -616,19 +618,17 @@ class Prismjs_Syntax_Highlighter {
 		$setting_name = self::SETTINGS_GROUP . '[' . self::OPTION_DEFAULT_LANGUAGE . ']';
 
 		?>
-        <select id="<?php echo esc_attr( self::OPTION_DEFAULT_LANGUAGE ); ?>"
-                name="<?php echo esc_attr( $setting_name ); ?>"
-                title="Default language"
-        >
+		<select id="<?php echo esc_attr( self::OPTION_DEFAULT_LANGUAGE ); ?>"
+		        name="<?php echo esc_attr( $setting_name ); ?>"
+		        title="Default language"
+		>
 			<?php foreach ( $languages[1] as $language ) : ?>
-                <option
-                        value="<?php echo esc_attr( $language ); ?>" <?php echo selected( $option_value,
-						                                                                  $language,
-						                                                                  false ); ?>>
+				<option value="<?php echo esc_attr( $language ); ?>"
+					<?php echo selected( $option_value, $language, false ); ?>>
 					<?php echo esc_html( $language ); ?>
-                </option>
+				</option>
 			<?php endforeach; ?>
-        </select>
+		</select>
 		<?php
 		debug_log( 'function end' );
 	}
@@ -647,12 +647,12 @@ class Prismjs_Syntax_Highlighter {
 		$setting_name = self::SETTINGS_GROUP . '[' . self::OPTION_DEFAULT_LINE_NUMBERS . ']';
 
 		?>
-        <input type="checkbox"
-               id="<?php echo esc_attr( self::OPTION_DEFAULT_LINE_NUMBERS ) ?>"
-               name="<?php echo esc_attr( $setting_name ); ?>"
-               value="1" <?php checked( 1, $option_value, true ); ?>
-               title="Show line numbers by default"
-        />
+		<input type="checkbox"
+		       id="<?php echo esc_attr( self::OPTION_DEFAULT_LINE_NUMBERS ) ?>"
+		       name="<?php echo esc_attr( $setting_name ); ?>"
+		       value="1" <?php checked( 1, $option_value, true ); ?>
+		       title="Show line numbers by default"
+		/>
 		<?php
 		debug_log( 'function end' );
 	}
@@ -677,11 +677,11 @@ class Prismjs_Syntax_Highlighter {
 		$setting_name = self::SETTINGS_GROUP . '[' . self::OPTION_SHOW_CSS_WARNING_NOTICE . ']';
 
 		?>
-        <input type="hidden"
-               id="<?php echo esc_attr( self::OPTION_SHOW_CSS_WARNING_NOTICE ) ?>"
-               name="<?php echo esc_attr( $setting_name ); ?>"
-               value="<?php echo esc_attr( '' !== $option_value ? esc_attr( $option_value ) : 'no' ); ?>"
-        />
+		<input type="hidden"
+		       id="<?php echo esc_attr( self::OPTION_SHOW_CSS_WARNING_NOTICE ) ?>"
+		       name="<?php echo esc_attr( $setting_name ); ?>"
+		       value="<?php echo esc_attr( '' !== $option_value ? esc_attr( $option_value ) : 'no' ); ?>"
+		/>
 		<?php
 		debug_log( 'function end' );
 	}
@@ -692,17 +692,17 @@ class Prismjs_Syntax_Highlighter {
 	public function options_page() {
 		debug_log( 'function start' );
 		?>
-        <div class="wrap">
-            <h1>Prism.js Syntax Highlighter Settings</h1>
+		<div class="wrap">
+			<h1>Prism.js Syntax Highlighter Settings</h1>
 
-            <form method="post" action="options.php">
+			<form method="post" action="options.php">
 				<?php
 				settings_fields( 'prismjs-settings-group' );
 				do_settings_sections( 'prismjs-settings-admin' );
 				submit_button();
 				?>
-            </form>
-        </div>
+			</form>
+		</div>
 		<?php
 		debug_log( 'function end' );
 	}
@@ -712,7 +712,7 @@ class Prismjs_Syntax_Highlighter {
 	 *
 	 * @param array $input The array of settings to validate.
 	 *
-	 * @return mixed|void The array of validated settings.
+	 * @return mixed The array of validated settings.
 	 */
 	public function validate_settings( $input ) {
 		debug_log( 'function start' );
@@ -735,4 +735,4 @@ class Prismjs_Syntax_Highlighter {
 	}
 }
 
-$prismjsSyntaxHighlighter = new Prismjs_Syntax_Highlighter();
+$prismjs_syntax_highlighter = new Prismjs_Syntax_Highlighter();
